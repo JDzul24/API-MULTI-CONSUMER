@@ -8,11 +8,11 @@ async function getEvent() {
     const conn = await amqp.connect(url);
     const channel = await conn.createChannel();
 
-    const exchange = 'Prueba';
+    const exchange = 'Prueba2';
 
     await channel.assertExchange(exchange, 'direct', { durable: true });
 
-    const queueName = 'initial';
+    const queueName = 'si123';
     const queue = await channel.assertQueue(queueName, { exclusive: false });
     await channel.bindQueue(queue.queue, exchange, '12345');
 
