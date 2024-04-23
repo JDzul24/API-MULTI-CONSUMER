@@ -4,15 +4,15 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 async function getEvent() {
-    const url = "amqp://carlos:12345@34.229.31.98";
+    const url = "amqp://michi:michi123@52.205.249.137";
     const conn = await amqp.connect(url);
     const channel = await conn.createChannel();
 
-    const exchange = 'event';
+    const exchange = 'Prueba';
 
     await channel.assertExchange(exchange, 'direct', { durable: true });
 
-    const queueName = 'Event-Driven';
+    const queueName = 'initial';
     const queue = await channel.assertQueue(queueName, { exclusive: false });
     await channel.bindQueue(queue.queue, exchange, '12345');
 
@@ -29,7 +29,7 @@ async function getEvent() {
             const idMmalon = parseInt(id)
             console.log(`Message received: ${id}`);
             try {
-                const response = await axios.post('https://api-multi-secundaria.onrender.com/registrations', { id_venta: id });
+                const response = await axios.post('https://api-multi-secundaria.onrender.com', { id_venta: id });
                 console.log(response);
                 
             } catch (error) {
