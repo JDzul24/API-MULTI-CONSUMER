@@ -29,7 +29,7 @@ async function getEvent() {
             const idMmalon = parseInt(id)
             console.log(`Message received: ${id}`);
             try {
-                const response = await axios.post('https://api-multi-secundaria.onrender.com', { id_venta: id });
+                const response = await axios.post('https://api-multi-secundaria.onrender.com/registrations', { id_venta: id });
                 console.log(response);
                 
             } catch (error) {
